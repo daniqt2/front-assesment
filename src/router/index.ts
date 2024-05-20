@@ -24,12 +24,19 @@ const routes: RouteRecordRaw[] = [
     path: "/mapView",
     name: ERoutes.MAP_VIEW,
     component: () => import("../pages/Map.page.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: "/restaurant",
+    path: "/restaurantList",
+    name: ERoutes.RESTAURANT_LIST,
+    component: () => import("../pages/RestaurantsList.page.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/restaurant/:id",
     name: ERoutes.RESTAURANT_DETAIL,
     component: () => import("../pages/RestaurantDetail.page.vue"),
-    // meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
 ];
 
@@ -39,9 +46,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const userStore = useUserStore();
+  const { userName } = useUserStore();
 
-  if (to.meta.requiresAuth && !userStore.isAuthenticated) {
+  if (to.name == ERoutes.LOGIN && userName) {
+    next({ name: ERoutes.RESTAURANT_LIST });
+  }
+
+  if (to.meta.requiresAuth && !userName) {
     next({ name: ERoutes.LOGIN });
   } else {
     next();

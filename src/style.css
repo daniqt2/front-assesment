@@ -19,8 +19,8 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center; /* Center the content vertically */
-  overflow: hidden; /* Prevent scrolling */
+  align-items: center;
+  overflow: hidden;
 }
 
 #app {
@@ -33,8 +33,11 @@ body {
   @apply border border-black rounded-full px-3 py-2 hover:bg-white;
 }
 
+.blue-hover {
+  @apply hover:bg-tailorBlue hover:text-white hover:border-tailorBlue;
+}
 .white-button {
-  @apply border border-white rounded-full p-2 px-3 hover:font-bold;
+  @apply border border-white rounded-full p-2 px-3 hover:font-bold disabled:text-slate-400 disabled:bg-opacity-10;
 }
 
 input {
@@ -47,4 +50,8 @@ input {
 
 .arrow-button {
   @apply border border-white px-6 py-2 rounded-full mb-6 hover:cursor-pointer hover:font-bold;
+}
+
+.clickable {
+  @apply hover:cursor-pointer hover:underline;
 }

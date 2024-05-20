@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import TInput from "@/components/common/form/TInput.vue";
 import { useField, useForm } from "vee-validate";
+import { IStepTwoFields } from "./utils";
 
 const emit = defineEmits<{
   (e: "next", formData: { password: string }): void;
 }>();
 
-const required = (value: string) => value?.length > 0;
-
 const { handleSubmit, validate } = useForm();
 
 const { value: password, errorMessage: passwordError } = useField(
   "password",
-  required
+  "required|min:6"
 );
 
-const submitStep = handleSubmit(async () => {
+const submitStep = handleSubmit(async (vals: IStepTwoFields) => {
   const isValid = await validate();
-  isValid && emit("next", { password });
+  isValid && emit("next", vals);
 });
 </script>
 
@@ -28,10 +27,14 @@ const submitStep = handleSubmit(async () => {
       <TInput
         label="Crea una contraseña nueva:"
         field="password"
+        type="password"
         placeholder="Añade una contraseña"
         v-model="password"
       />
-      <button type="submit" class="white-button">Finalizar</button>
+      <p c>{{ passwordError }}</p>
+      <button type="submit" class="white-button" @click="submitStep">
+        Finalizar
+      </button>
     </form>
   </div>
 </template>

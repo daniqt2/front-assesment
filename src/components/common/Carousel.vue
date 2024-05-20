@@ -1,35 +1,42 @@
-<script setup>
+<script setup lang="ts">
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import ImageCard from "@/components/common/cards/ImageCard.vue";
-import { computed, onMounted, ref } from "vue";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
+import { computed, ref, watch } from "vue";
 
-// TODOD -> transform-origin: center XPX
+// TODOD -> transform-origin: center XPX ???
 
-// Could be helper - TODO
+const emit = defineEmits<{
+  (e: "change", idx: number): void;
+}>();
+
 const elementsToShow = computed(() => {
   return screen.width <= 640 ? 1.8 : screen.width <= 760 ? 4 : 6;
 });
 
 const currentSlide = ref(2);
 
-const { customComponent } = defineProps({
+const { customComponent, dataList } = defineProps({
   customComponent: Object,
+  dataList: Array,
 });
+
+watch(
+  () => currentSlide.value,
+  (newVal) => emit("change", newVal)
+);
 </script>
 
 <template>
-  <button @click="ooo">a</button>
   <Carousel
     :items-to-show="elementsToShow"
     :wrap-around="true"
     v-model="currentSlide"
   >
-    <Slide v-for="(slide, idx) in 12" :key="slide">
+    <Slide v-for="(slide, idx) in dataList" :key="`${idx}-slide`">
       <component
         :is="customComponent"
         :slide="slide"
-        :active="slide == currentSlide + 1"
+        :active="idx == currentSlide"
       ></component>
     </Slide>
 

@@ -1,24 +1,30 @@
 <script setup lang="ts">
-import imm from "@/assets/restaurantDefault.png";
+import { IRestaurant } from "@/interfaces/Restaurant.interface";
+import { ERoutes } from "@/router/router.utils";
+import { useRouter } from "vue-router";
 const { slide, active } = defineProps<{
   active?: boolean;
-  slide: any;
+  slide: IRestaurant;
 }>();
 
-console.log(slide, active);
+const router = useRouter();
+
+const goToDetail = () => {
+  router.push({ name: ERoutes.RESTAURANT_DETAIL, params: { id: slide._id } });
+};
 </script>
 
 <template>
-  <div class="bg-gray-900 rounded-xl">
+  <div class="bg-gray-900 rounded-xl hover:cursor-pointer" @click="goToDetail">
     <div class="relative">
       <img
         class="object-cover h-56 md:h-96 w-72 rounded-xl"
-        :class="!active ? 'opacity-60' : 'opacity-100'"
-        :src="imm"
+        :class="!active ? 'opacity-40' : 'opacity-100'"
+        :src="slide.image"
       />
       <div class="absolute z-10 bottom-0 text-md p-3 text-left">
-        <p class="font-bold">Nombre shalala</p>
-        <p>Direción</p>
+        <p class="font-bold">{{ slide.name }}</p>
+        <p>{{ slide.address }}</p>
       </div>
     </div>
   </div>

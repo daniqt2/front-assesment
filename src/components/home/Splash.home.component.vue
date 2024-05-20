@@ -27,23 +27,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.splash-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #f1f1f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* ensure it's on top of everything */
-}
-
-.splash-content {
-  text-align: center;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 1s;

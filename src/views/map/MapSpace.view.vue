@@ -1,26 +1,38 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, onUnmounted } from "vue";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import Carousel from "@/components/common/Carousel.vue";
 import ImageCard from "@/components/common/cards/ImageCard.vue";
 import UserMenu from "@/components/common/menu/UserMenu.vue";
+import { useRestaurantStore } from "@/store/restaurant.store";
+import { storeToRefs } from "pinia";
+import { LatLngExpression } from "leaflet";
 
-const initialMap = ref<L.Map | null>(null);
+const customMap = ref<L.Map>();
+
+const restaurantStore = useRestaurantStore();
+const { restaurants } = storeToRefs(restaurantStore);
 
 onMounted(() => {
-  initialMap.value = L.map("map").setView(
-    [40.42742000960579, -3.697411188568871],
-    80
+  const tailor: LatLngExpression = [40.42742000960579, -3.697411188568871];
+  customMap.value = L.map("map").setView(tailor, 80);
+
+  // todo -  watch
+  restaurants.value.forEach((res) =>
+    L.marker([res.latlng.lat, res.latlng.lng]).addTo(customMap.value as L.Map)
   );
-  L.marker([40.42623253007991, -3.6965539089861665]).addTo(initialMap.value);
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(initialMap.value);
+  }).addTo(customMap.value);
 });
+
+const handleChange = (idx: number) => {
+  const coord = restaurants.value[idx]?.latlng;
+  const position: LatLngExpression = [coord.lat, coord.lng];
+  (customMap.value as L.Map).setView(position, 100);
+};
 </script>
 
 <template>
@@ -28,7 +40,11 @@ onMounted(() => {
     <UserMenu />
     <div id="map" class="top-0 z-0"></div>
     <div class="mt-4 absolute bottom-0 z-2">
-      <Carousel :customComponent="ImageCard" />
+      <Carousel
+        :customComponent="ImageCard"
+        :dataList="restaurants"
+        @change="handleChange"
+      />
     </div>
   </div>
 </template>

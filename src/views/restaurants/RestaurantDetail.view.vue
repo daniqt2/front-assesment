@@ -1,34 +1,72 @@
 <script setup lang="ts">
-import NameCard from "../../components/common/cards/NameCard.vue";
+import { useRoute } from "vue-router";
+import ReviewCard from "@/components/common/cards/ReviewCard.vue";
+import HeroBanner from "@/components/common/banner/HeroBanner.vue";
+import AddReview from "./detail/components/AddReview.vue";
+import { useRestaurantStore } from "@/store/restaurant.store";
+import { onMounted, onUnmounted, ref } from "vue";
+import { storeToRefs } from "pinia";
+
+const { params } = useRoute();
+const isLoading = ref(false);
+
+const { getRestaurant } = useRestaurantStore();
+const restaurantStore = useRestaurantStore();
+const { selectedRestaurant } = storeToRefs(restaurantStore);
+
+onMounted(() => {
+  isLoading.value = true;
+  const id = params.id as string;
+  !selectedRestaurant.value &&
+    getRestaurant(id).then(() => {
+      isLoading.value = false;
+    });
+});
+
+onUnmounted(() => {
+  restaurantStore.clearSelected();
+});
 </script>
 
 <template>
   <div class="w-full h-full flex-row p-8">
-    <div class="bg-red-100 text-center flex header-img rounded-xl">
-      <div class="m-auto">
-        <p>Nombre de restau</p>
-        <p>shalala</p>
-      </div>
-    </div>
-    <div class="grid grid-cols-3 sm:grid-cols-3 px-4 lg:px-24 py-2 lg:py-8">
-      <div class="col-span-3 sm:col-span-2 flex flex-col justify-end">
-        <div class="text-black mb-8">
-          Lorem ipsum dolor sit amet consectetur. At vel elementum amet est
-          nulla cras turpis. Fringilla ornare massa eu a sollicitudin vestibulum
-          auctor risus. Elementum quam sit neque quis. A vestibulum consectetur
-          tincidunt vitae.Lorem ipsum dolor sit amet consectetur. At vel
-          elementum amet est nulla cras turpis. Fringilla ornare massa eu a
-          sollicitudin vestibulum auctor risus. Elementum quam sit neque quis. A
-          vestibulum consectetur tincidunt vitae.Lorem ipsum dolor sit amet
-          consectetur. At vel elementum amet est nulla cras turpis. Fringilla
-          ornare massa eu a sollicitudin vestibulum auctor risus. Elementum quam
-          sit neque quis. A vestibulum consectetur tincidunt vitae.
+    <HeroBanner :image="selectedRestaurant?.image || ''" :loading="isLoading">
+      <template v-slot:content>
+        <p class="font-bold text-2xl">{{ selectedRestaurant?.name }}</p>
+        <p>{{ selectedRestaurant?.address }}</p>
+      </template>
+    </HeroBanner>
+
+    <div
+      class="grid grid-cols-3 sm:grid-cols-3 gap-10 px-4 lg:px-24 py-2 lg:py-8"
+    >
+      <div class="col-span-3 sm:col-span-2 flex flex-col">
+        <div
+          class="text-black mb-8"
+          :class="[
+            !selectedRestaurant?.description?.length,
+            ' text-gray-500 font-light',
+          ]"
+        >
+          {{ selectedRestaurant?.description ?? "Aún no tiene descripción" }}
         </div>
-        <NameCard></NameCard>
-        <NameCard></NameCard>
-        <NameCard></NameCard>
+        <div v-if="selectedRestaurant?.reviews.length">
+          <ReviewCard
+            v-for="(review, idx) in selectedRestaurant?.reviews"
+            :review="review"
+            :key="`${idx}-review`"
+          ></ReviewCard>
+        </div>
+        <p
+          v-else
+          class="text-black font-bold text-lg border-b border-tailorBlue py-8 mt-2"
+        >
+          Se el primero en dejar una opinión!
+        </p>
       </div>
-      <div class="col-span-3 sm:col-span-1 flex flex-col justify-end">aaaa</div>
+      <div class="col-span-3 sm:col-span-1 flex flex-col">
+        <AddReview></AddReview>
+      </div>
     </div>
   </div>
 </template>

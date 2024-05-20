@@ -4,6 +4,7 @@ const { label, field, type, placeholder } = defineProps<{
   field: string;
   type?: string;
   placeholder?: string;
+  error?: string;
 }>();
 
 const model = defineModel();
@@ -25,5 +26,6 @@ const updateValue = (event: Event) => {
       class="input text-white"
       @input="updateValue"
     />
+    <p v-if="error" class="text-red-100">{{ error }}</p>
   </div>
 </template>

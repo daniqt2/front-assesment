@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 import { ERoutes } from "@/router/router.utils";
 import { nextTick, ref } from "vue";
 import SplashHomeComponent from "@/components/home/Splash.home.component.vue";
-import TailorLogo from "@/components/common/TailorLogo.vue";
+import TailorLogo from "@/components/common/icons/TailorLogo.vue";
 
 const splashShowing = ref(true);
 

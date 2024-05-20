@@ -1,50 +1,54 @@
 <script setup lang="ts">
-import { useForm } from "vee-validate";
+import TInput from "@/components/common/form/TInput.vue";
+import { useField, useForm } from "vee-validate";
 
-// Validation, or use `yup` or `zod`
-function required(value: string) {
-  return value ? true : "This field is required";
+interface IParams {
+  email: string;
+  password: string;
 }
+const { loading } = defineProps<{
+  loading?: boolean;
+}>();
 
-// Create the form
-const { defineField, handleSubmit, errors } = useForm({
-  validationSchema: {
-    field: required,
-  },
-});
+const emit = defineEmits<{
+  (e: "login", formData: { email: string; password: string }): void;
+}>();
 
-// Define fields
-const nameField = defineField("name");
-const passwordField = defineField("password");
+const { handleSubmit, validate, valid } = useForm();
 
-// Submit handler
-const onSubmit = handleSubmit((values) => {
-  // Submit to API
-  console.log(values);
+const required = (value: string) => value?.length > 0; // TODO -> VALIDATION file
+
+const { value: email, errorMessage: emailError } = useField("email", required);
+const { value: password, errorMessage: passwrodError } = useField(
+  "password",
+  required
+);
+
+const submitData = handleSubmit(async (params: IParams) => {
+  const isValid = await validate();
+  isValid && emit("login", params);
 });
 </script>
 
 <template>
-  <form @submit="onSubmit">
-    <div class="field">
-      <label for="email" class="mb-2">Email</label>
-      <input
-        id="email"
-        name="email"
-        placeholder="Escribe tu email"
-        class="input"
-      />
-    </div>
-    <div class="field">
-      <label for="contraseña" class="mb-2">Contraseña</label>
-      <input
-        id="constraseña"
-        type="password"
-        name="constraseña"
-        placeholder="Escribe tu contraseña"
-        class="input"
-      />
-    </div>
+  <form @submit="submitData">
+    <TInput
+      label="Email"
+      field="email"
+      placeholder="Añade tu email"
+      type="email"
+      v-model="email"
+    />
+    <TInput
+      label="Contraseña"
+      field="password"
+      placeholder="Escribe tu contraseña"
+      type="password"
+      v-model="password"
+    />
+    <button class="white-button flex" type="submit">
+      <div class="animate-spin mr-2" v-if="loading">--</div>
+      <span v-else>Entrar</span>
+    </button>
   </form>
-  <button class="white-button">Siguiente</button>
 </template>
