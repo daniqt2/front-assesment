@@ -1,52 +1,36 @@
 <script setup lang="ts">
-import { useForm } from "vee-validate";
+import { ref } from "vue";
+import StepOne from "./steps/StepOne.register.vue";
+import StepTwo from "./steps/StepTwo.register.vue";
 
-// Validation, or use `yup` or `zod`
-function required(value: string) {
-  return value ? true : "This field is required";
-}
+import { IStepOneFields } from "./steps/utils";
+import TailorLogo from "@/components/common/TailorLogo.vue";
+import { useRouter } from "vue-router";
 
-// Create the form
-const { defineField, handleSubmit, errors } = useForm({
-  validationSchema: {
-    field: required,
-  },
-});
+const step = ref(1);
 
-// Define fields
-const nameField = defineField("name");
-const passwordField = defineField("password");
+const router = useRouter();
 
-// Submit handler
-const onSubmit = handleSubmit((values) => {
-  // Submit to API
+const handleNext = (values: IStepOneFields) => {
   console.log(values);
-});
+  step.value += 1;
+};
+
+const handleBack = (values: IStepOneFields) => {
+  switch (step.value) {
+    case 1:
+      router.back();
+      break;
+    case 2:
+      step.value -= 1;
+      break;
+  }
+};
 </script>
 
 <template>
-  <form @submit="onSubmit">
-    <div class="flex flex-col md:w-2/3 mb-6">
-      <label for="email" class="mb-2">Email</label>
-      <input
-        id="email"
-        name="email"
-        placeholder="Escribe tu email"
-        class="bg-transparent border-white border rounded-full p-2"
-      />
-    </div>
-    <div class="flex flex-col md:w-2/3 mb-6">
-      <label for="contraseña" class="mb-2">Contraseña</label>
-      <input
-        id="constraseña"
-        type="password"
-        name="constraseña"
-        placeholder="Escribe tu contraseña"
-        class="bg-transparent border-white border rounded-full p-2"
-      />
-    </div>
-  </form>
-  <button class="border border-white rounded-full p-2 px-3 hover:bg-white">
-    Siguiente
-  </button>
+  <TailorLogo fill="fill-white" class="mb-4" />
+  <button class="arrow-button" @click="handleBack"><-</button>
+  <StepOne v-if="step == 1" @next="handleNext"></StepOne>
+  <StepTwo v-if="step == 2"></StepTwo>
 </template>

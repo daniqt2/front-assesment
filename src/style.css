@@ -17,13 +17,34 @@
 
 body {
   margin: 0;
-  min-height: 100vh; /* Adjusted to 100vh to ensure the body takes the full viewport height */
   display: flex;
   justify-content: center;
   align-items: center; /* Center the content vertically */
+  overflow: hidden; /* Prevent scrolling */
 }
 
 #app {
-  width: 100%;
-  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+.button {
+  @apply border border-black rounded-full px-3 py-2 hover:bg-white;
+}
+
+.white-button {
+  @apply border border-white rounded-full p-2 px-3 hover:font-bold;
+}
+
+input {
+  @apply bg-transparent border-white border rounded-full p-2;
+}
+
+.field {
+  @apply flex flex-col md:w-2/3 mb-6;
+}
+
+.arrow-button {
+  @apply border border-white px-6 py-2 rounded-full mb-6 hover:cursor-pointer hover:font-bold;
 }

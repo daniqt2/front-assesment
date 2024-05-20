@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { useUserStore } from "../store/user.store";
+import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
+
 import { ERoutes } from "./router.utils";
+import { useUserStore } from "../store/user.store";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -20,16 +21,16 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../pages/Register.page.vue"),
   },
   {
+    path: "/mapView",
+    name: ERoutes.MAP_VIEW,
+    component: () => import("../pages/Map.page.vue"),
+  },
+  {
     path: "/restaurant",
     name: ERoutes.RESTAURANT_DETAIL,
     component: () => import("../pages/RestaurantDetail.page.vue"),
+    // meta: { requiresAuth: true }
   },
-  // {
-  //   path: '/protected',
-  //   name: 'Protected',
-  //   component: Protected,
-  //   meta: { requiresAuth: true },
-  // },
 ];
 
 const router = createRouter({

@@ -9,11 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/leaflet": "^1.9.12",
     "@vee-validate/yup": "^4.12.8",
+    "axios": "^1.6.8",
     "leaflet": "^1.9.4",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.8",
     "vue": "^3.4.21",
+    "vue-awesome": "^4.5.0",
     "vue-router": "4",
     "vue3-carousel": "^0.3.3",
     "yarn": "^1.22.22",

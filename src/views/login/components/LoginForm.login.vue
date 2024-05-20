@@ -26,27 +26,25 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
   <form @submit="onSubmit">
-    <div class="flex flex-col md:w-2/3 mb-6">
+    <div class="field">
       <label for="email" class="mb-2">Email</label>
       <input
         id="email"
         name="email"
         placeholder="Escribe tu email"
-        class="bg-transparent border-white border rounded-full p-2"
+        class="input"
       />
     </div>
-    <div class="flex flex-col md:w-2/3 mb-6">
+    <div class="field">
       <label for="contraseña" class="mb-2">Contraseña</label>
       <input
         id="constraseña"
         type="password"
         name="constraseña"
         placeholder="Escribe tu contraseña"
-        class="bg-transparent border-white border rounded-full p-2"
+        class="input"
       />
     </div>
   </form>
-  <button class="border border-white rounded-full p-2 px-3 hover:font-bold">
-    Siguiente
-  </button>
+  <button class="white-button">Siguiente</button>
 </template>

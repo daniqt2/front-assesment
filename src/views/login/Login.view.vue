@@ -13,7 +13,7 @@ const goRegister = () => router.push({ name: ERoutes.REGISTER });
 <template>
   <MainLayout image="Login">
     <template v-slot:left-column>
-      <div class="bg-tailorBlue p-6 rounded-lg text-white">
+      <div class="bg-tailorBlue p-6 rounded-lg text-white w-full">
         <TailorLogo fill="fill-white" />
         <p
           class="text-light my-8 text-sm hover:cursor-pointer hover:font-bold"

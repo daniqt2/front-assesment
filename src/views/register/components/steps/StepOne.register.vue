@@ -1,39 +1,46 @@
 <script setup lang="ts">
-import { useForm, useField } from "@vee-validate/core";
-import * as yup from "yup";
-import { ref } from "vue";
+import TInput from "@/components/common/form/TInput.vue";
+import { useField, useForm } from "vee-validate";
 
 const emit = defineEmits<{
-  (e: "next", formData: { name: string }): void;
+  (e: "next", formData: { email: string; username: string }): void;
 }>();
 
-const formSchema = yup.object({
-  name: yup.string().required("Name is required"),
+const required = (value: string) => value?.length > 0;
+
+const { handleSubmit, validate } = useForm();
+
+const { value: email, errorMessage: emailError } = useField("email", required);
+const { value: username, errorMessage: usernameError } = useField(
+  "username",
+  required
+);
+
+const submitStep = handleSubmit(async () => {
+  const isValid = await validate();
+  isValid && emit("next", { email, username });
 });
 
-const { handleSubmit, errors } = useForm({
-  validationSchema: formSchema,
-});
-
-const form = ref({
-  name: "",
-});
-
-const nextStep = () => {
-  // Emit an event to the parent to proceed to the next step
-  emit("next", form.value);
-};
+// TODO - SAVE VALUES FOR DEFAULT AND SEND
 </script>
 
 <template>
   <div>
-    <form @submit.prevent="handleSubmit">
-      <div>
-        <label for="name">Name:</label>
-        <input v-model="form.name" name="name" type="text" />
-        <span>{{ errors.name }}</span>
-      </div>
-      <button type="submit">Next</button>
+    <form @submit.prevent="submitStep">
+      <TInput
+        label="Email:"
+        field="email"
+        placeholder="Añade tu email"
+        type="email"
+        v-model="email"
+      />
+      <TInput
+        label="Nombre de usuario:"
+        field="username"
+        placeholder="Añade tu nombre"
+        v-model="username"
+      />
+      <button type="submit" class="white-button">Siguiente</button>
     </form>
   </div>
 </template>

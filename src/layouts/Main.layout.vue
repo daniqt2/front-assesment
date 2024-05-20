@@ -5,27 +5,17 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div
-    class="h-full w-screen flex justify-center items-center overflow-hidden mb-12 md:mb-0"
-  >
-    <div
-      class="h-full grid grid-cols-1 md:grid-cols-2 gap-4 p-6 flex-col-reverse"
-    >
-      <div
-        class="col-span-1 md:col-span-1 flex flex-col justify-end row-start-2 md:row-start-1"
-      >
-        <slot name="left-column"></slot>
-      </div>
-      <div class="col-span-1 md:col-span-1 mb-0 flex flex-col justify-end">
-        <slot name="right-column">
-          <img
-            class="mx-auto"
-            :src="`/main/${props.image ?? 'Default'}.png`"
-            alt="home im"
-            width="100%"
-            height="100%"
-          />
-        </slot>
+  <div class="flex flex-col-reverse md:flex-row h-screen p-4">
+    <div class="md:w-1/2 flex justify-center items-end">
+      <div class="p-4 w-full"><slot name="left-column"></slot></div>
+    </div>
+    <div class="md:w-1/2 flex justify-center items-end">
+      <div class="h-full w-full p-4 flex justify-center items-end">
+        <img
+          class="w-full h-full object-cover rounded-xl"
+          :src="`/main/${props.image ?? 'Default'}.png`"
+          alt="home im"
+        />
       </div>
     </div>
   </div>
