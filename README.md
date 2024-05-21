@@ -1,13 +1,25 @@
 # Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This Vue 3 project is made for Tailor Hub's technical review.
+It's built with Vue 3 and Vite, using
 
-## Recommended IDE Setup
+- TypeScript for type safety
+- Axios for HTTP requests
+- Pinia for state management.
+- Tailwind as style manager
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+It also uses leaflet for a special map view.
 
-## missing
+## HOW TO RUN
 
+    > yarn
+    > yarn dev
+
+proyect will run in 'http://localhost:3000/'
+
+## missing funcionalities
+
+- TESTS
 - error handling
 - some crud calls
 - top menu
