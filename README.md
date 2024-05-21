@@ -10,6 +10,11 @@ It's built with Vue 3 and Vite, using
 
 It also uses leaflet for a special map view.
 
+## LIVE
+
+https://dynamic-dasik-4eaf8a.netlify.app/ 
+(CORS IS BLOCKED ON SERVER)
+
 ## HOW TO RUN
 
     > yarn
