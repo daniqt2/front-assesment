@@ -18,10 +18,12 @@ onMounted(() => {
   const tailor: LatLngExpression = [40.42742000960579, -3.697411188568871];
   customMap.value = L.map("map").setView(tailor, 80);
 
-  // todo -  watch
-  restaurants.value.forEach((res) =>
-    L.marker([res.latlng.lat, res.latlng.lng]).addTo(customMap.value as L.Map)
-  );
+  if (!restaurants.value.length) restaurantStore.getRestaurants();
+  else {
+    restaurants.value.forEach((res) =>
+      L.marker([res.latlng.lat, res.latlng.lng]).addTo(customMap.value as L.Map)
+    );
+  }
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
@@ -37,7 +39,6 @@ const handleChange = (idx: number) => {
 
 <template>
   <div class="p-4 rounded-lg">
-    <UserMenu />
     <div id="map" class="top-0 z-0"></div>
     <div class="mt-4 absolute bottom-0 z-2">
       <Carousel

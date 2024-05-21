@@ -2,7 +2,6 @@
 const { label, field, type, placeholder, variant } = defineProps<{
   label: string;
   field: string;
-  type?: string;
   placeholder?: string;
   error?: string;
   variant?: string;
@@ -18,16 +17,15 @@ const updateValue = (event: Event) => {
 
 <template>
   <div class="field" :class="variant ?? 'input-primary'">
-    <label :for="field" class="mb-2 font-bold">{{ label }}</label>
-    <input
-      autocomplete="false"
+    <label :for="field" class="mb-2">{{ label }}</label>
+    <textArea
       :id="field"
-      :type="type ?? 'text'"
       :name="field"
       :placeholder="placeholder ?? ''"
-      class="input"
+      class="bg-transparent text-area rounded-smbg-transparent border rounded-md p-2"
+      autocomplete="off"
       @input="updateValue"
-    />
+    ></textArea>
     <p v-if="error" class="text-red-100">{{ error }}</p>
   </div>
 </template>

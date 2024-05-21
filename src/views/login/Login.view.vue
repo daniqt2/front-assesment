@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
-import MainLayout from "../../layouts/Main.layout.vue";
+import MainLayout from "../../layouts/ColumnEnd.layout.vue";
 import LoginForm from "./components/LoginForm.login.vue";
 import { ERoutes } from "@/router/router.utils";
 import TailorLogo from "@/components/common/icons/TailorLogo.vue";

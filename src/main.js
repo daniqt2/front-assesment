@@ -1,4 +1,5 @@
 import "./style.css";
+import "./customStyles.scss";
 import "./utils/validations";
 
 import App from "./App.vue";

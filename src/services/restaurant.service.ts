@@ -25,8 +25,13 @@ const restaurantService = {
     return httpService.get<IRestaurant>(`${RESTAURANT_URL}detail/${id}`);
   },
 
-  create(restaurant: Partial<Restaurant>): Promise<AxiosResponse<Restaurant>> {
-    return httpService.post<IRestaurant>(RESTAURANT_URL, restaurant);
+  create(
+    restaurant: Partial<IRestaurant>
+  ): Promise<AxiosResponse<IRestaurant>> {
+    return httpService.post<IRestaurant>(
+      `${RESTAURANT_URL}create/`,
+      restaurant
+    );
   },
 
   update(
@@ -38,6 +43,10 @@ const restaurantService = {
 
   delete(id: string): Promise<AxiosResponse<void>> {
     return httpService.delete<void>(`${RESTAURANT_URL}${id}`);
+  },
+
+  createComment(id: string, comment: string): Promise<AxiosResponse<void>> {
+    return httpService.post<void>(`${RESTAURANT_URL}${id}/comment`, comment);
   },
 };
 

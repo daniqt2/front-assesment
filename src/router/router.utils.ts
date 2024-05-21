@@ -6,5 +6,6 @@ export enum ERoutes {
   HOME = "home",
   RESTAURANT_LIST = "restaurantList",
   RESTAURANT_DETAIL = "restaurantDetail",
+  RESTAURANT_CREATE = "restaurantCreate",
   MAP_VIEW = "mapView",
 }

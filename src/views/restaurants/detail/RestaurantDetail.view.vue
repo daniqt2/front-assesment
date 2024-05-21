@@ -2,7 +2,7 @@
 import { useRoute } from "vue-router";
 import ReviewCard from "@/components/common/cards/ReviewCard.vue";
 import HeroBanner from "@/components/common/banner/HeroBanner.vue";
-import AddReview from "./detail/components/AddReview.vue";
+import AddReview from "./components/AddReview.vue";
 import { useRestaurantStore } from "@/store/restaurant.store";
 import { onMounted, onUnmounted, ref } from "vue";
 import { storeToRefs } from "pinia";
@@ -43,10 +43,9 @@ onUnmounted(() => {
       <div class="col-span-3 sm:col-span-2 flex flex-col">
         <div
           class="text-black mb-8"
-          :class="[
-            !selectedRestaurant?.description?.length,
-            ' text-gray-500 font-light',
-          ]"
+          :class="{
+            'text-gray-500 font-light': selectedRestaurant?.description?.length,
+          }"
         >
           {{ selectedRestaurant?.description ?? "Aún no tiene descripción" }}
         </div>

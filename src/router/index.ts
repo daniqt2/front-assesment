@@ -8,7 +8,6 @@ const routes: RouteRecordRaw[] = [
     path: "/",
     name: ERoutes.WELCOME,
     component: () => import("../pages/Welcome.page.vue"),
-    // meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -38,11 +37,27 @@ const routes: RouteRecordRaw[] = [
     component: () => import("../pages/RestaurantDetail.page.vue"),
     meta: { requiresAuth: true },
   },
+  {
+    path: "/restaurant/create",
+    name: ERoutes.RESTAURANT_CREATE,
+    component: () => import("../pages/CreateRestaurant.page.vue"),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+// TODO - CHECK NAV ERROR
+router.onError((error, to) => {
+  if (
+    error.message.includes("Failed to fetch dynamically imported module") ||
+    error.message.includes("Importing a module script failed")
+  ) {
+    window.location = to.fullPath;
+  }
 });
 
 router.beforeEach((to, from, next) => {

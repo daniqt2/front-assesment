@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import bgImage from "../../assets/RestaurantList.png";
+import bgImage from "@/assets/RestaurantList.png";
 import { useRouter } from "vue-router";
 import { ERoutes } from "@/router/router.utils";
 import NameCard from "@/components/common/cards/NameCard.vue";
@@ -19,6 +19,7 @@ const pagination = reactive({
 });
 
 const goMapView = () => router.push({ name: ERoutes.MAP_VIEW });
+const goCreate = () => router.push({ name: ERoutes.RESTAURANT_CREATE });
 
 const getRestaurants = async () => {
   isLoading.value = true;
@@ -29,7 +30,7 @@ const getRestaurants = async () => {
 };
 
 onMounted(() => {
-  getRestaurants();
+  !restaurants.value.length && getRestaurants();
 });
 
 const goToDetail = (id: string) =>
@@ -53,6 +54,7 @@ const showShowMore = computed(
     </div>
     <div class="text-black font-bold py-4 text-lg">
       <div class="clickable" @click="goMapView">Ve al Mapa</div>
+      <div class="clickable" @click="goCreate">Añadir restaurante</div>
     </div>
     <div class="text-black w-full text-center" v-if="isLoading">
       <p class="animate-pulse text-2xl">LOADING...</p>

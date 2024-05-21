@@ -28,30 +28,3 @@ body {
   min-height: 100vh;
   overflow: auto;
 }
-
-.button {
-  @apply border border-black rounded-full px-3 py-2 hover:bg-white;
-}
-
-.blue-hover {
-  @apply hover:bg-tailorBlue hover:text-white hover:border-tailorBlue;
-}
-.white-button {
-  @apply border border-white rounded-full p-2 px-3 hover:font-bold disabled:text-slate-400 disabled:bg-opacity-10;
-}
-
-input {
-  @apply bg-transparent border-white border rounded-full p-2;
-}
-
-.field {
-  @apply flex flex-col md:w-2/3 mb-6;
-}
-
-.arrow-button {
-  @apply border border-white px-6 py-2 rounded-full mb-6 hover:cursor-pointer hover:font-bold;
-}
-
-.clickable {
-  @apply hover:cursor-pointer hover:underline;
-}

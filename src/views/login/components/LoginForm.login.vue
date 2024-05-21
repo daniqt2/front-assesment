@@ -14,7 +14,7 @@ const emit = defineEmits<{
   (e: "login", formData: { email: string; password: string }): void;
 }>();
 
-const { handleSubmit, validate, valid } = useForm();
+const { handleSubmit, validate } = useForm();
 
 const required = (value: string) => value?.length > 0; // TODO -> VALIDATION file
 

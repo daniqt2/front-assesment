@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import MainLayout from "../../layouts/Main.layout.vue";
+import MainLayout from "../../layouts/ColumnEnd.layout.vue";
 import logoImage from "../../assets/Logo.png";
 import RegisterForm from "./components/RegisterForm.register.vue";
 </script>
