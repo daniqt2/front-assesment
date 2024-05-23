@@ -23,11 +23,6 @@ export const useRestaurantStore = defineStore("restaurant", {
   actions: {
     async getRestaurants(params?: IListParams) {
       try {
-        console.log(
-          this.restaurants.length,
-          params?.page,
-          this.pagination.page
-        );
         if (this.restaurants.length && params?.page === this.pagination.page)
           return;
         const response = await restaurantService.list(params);

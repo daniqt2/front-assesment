@@ -1,0 +1,33 @@
+.primary-input {
+  @apply border-white;
+}
+
+.secondary-input {
+  @apply border-tailorBlue;
+}
+
+.input {
+  @apply bg-transparent border rounded-full p-2;
+}
+
+.input-primary .input,
+.text-area {
+  @apply border-white text-white placeholder-gray-200;
+}
+
+.input-primary label {
+  @apply text-white;
+}
+
+.input-secondary .input,
+.text-area {
+  @apply border-black text-black placeholder-gray-400;
+}
+
+.input-secondary label {
+  @apply text-black;
+}
+
+.field {
+  @apply flex flex-col md:w-2/3 mb-6;
+}

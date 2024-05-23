@@ -1,0 +1,7 @@
+.button {
+  @apply border border-black rounded-2xl px-6 py-2 hover:bg-white;
+}
+
+.white-button {
+  @apply border border-white rounded-full p-2 px-3 hover:font-bold disabled:text-slate-400 disabled:bg-opacity-10;
+}

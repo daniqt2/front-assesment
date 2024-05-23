@@ -1,6 +1,23 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import emitter from '@/utils/bus/emiter'
+
+
+interface Error {
+  response: {
+    data: {message: string}
+  }
+}
+
 
 const instance = axios.create({
   baseURL: "https://main--stellular-fenglisu-e2b691.netlify.app/api", // TODO - SHOULD BE IN ENV
-});
+})
+
+instance.interceptors.response.use(
+  response => response,
+  error => {
+    emitter.emit('error', { error: (error as Error).response?.data.message } )
+  });
+
+
 export default instance;

@@ -1,0 +1,11 @@
+@import "./buttons.scss";
+@import "./states.scss";
+@import "./input.scss";
+
+.arrow-button {
+  @apply border border-white px-6 py-2 rounded-full mb-6 hover:cursor-pointer hover:font-bold;
+}
+
+.clickable {
+  @apply hover:cursor-pointer hover:underline;
+}

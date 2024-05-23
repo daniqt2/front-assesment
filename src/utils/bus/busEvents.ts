@@ -1,0 +1,3 @@
+enum EBusEvents  {
+  ERROR ='error'
+}

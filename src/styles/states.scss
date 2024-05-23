@@ -1,0 +1,7 @@
+.blue-hover {
+  @apply hover:bg-tailorBlue hover:text-white hover:border-tailorBlue;
+}
+
+.disabled {
+  @apply bg-gray-300 hover:bg-gray-300 text-gray-400 border-gray-300;
+}

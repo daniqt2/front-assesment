@@ -3,7 +3,7 @@ import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import { computed, ref, watch } from "vue";
 
-// TODOD -> transform-origin: center XPX ???
+// TODOD -> Rounded carousel ?? -> syles ? scratch ?
 
 const emit = defineEmits<{
   (e: "change", idx: number): void;
@@ -46,7 +46,7 @@ watch(
   </Carousel>
 </template>
 
-<style>
+<style scoped>
 .carousel__item {
   min-height: 300px;
   width: 100%;
