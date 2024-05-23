@@ -45,8 +45,11 @@ const restaurantService = {
     return httpService.delete<void>(`${RESTAURANT_URL}${id}`);
   },
 
-  createComment(id: string, comment: string): Promise<AxiosResponse<void>> {
-    return httpService.post<void>(`${RESTAURANT_URL}${id}/comment`, comment);
+  createComment(
+    id: string,
+    params: { comment: string; rating: number }
+  ): Promise<AxiosResponse<void>> {
+    return httpService.post<void>(`${RESTAURANT_URL}${id}/comment`, params);
   },
 };
 

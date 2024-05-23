@@ -24,9 +24,16 @@ export const useUserStore = defineStore("user", {
     async login(params: ILoginParams): Promise<IUser | undefined> {
       try {
         const response: AxiosResponse<IUser> = await authService.login(params);
-        this.user = response.data;
-        return this.user;
-      } catch (error) {}
+        if (response) {
+          // fix type error
+          const token = response?.headers?.getAuthorization();
+          localStorage.setItem("TOKEN-TL", token);
+          this.user = response.data;
+          return this.user;
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
     async signup(params: IRegisterParams): Promise<void> {
       try {

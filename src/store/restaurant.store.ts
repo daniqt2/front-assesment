@@ -75,10 +75,13 @@ export const useRestaurantStore = defineStore("restaurant", {
       }
     },
 
-    async createComment(id: string, comment: string) {
+    async createComment(
+      id: string,
+      params: { comment: string; rating: number }
+    ) {
       try {
-        await restaurantService.createComment(id, comment);
-        // TODO - update comments
+        await restaurantService.createComment(id, params);
+        this.getRestaurant(id);
       } catch (error) {
         console.error(error);
       }

@@ -23,6 +23,9 @@ const authService = {
   async login(params: ILoginParams): Promise<AxiosResponse> {
     return await httpService.post(`${AUTH_URL}login`, params);
   },
+  async refreshToken(): Promise<AxiosResponse> {
+    return await httpService.get(`${AUTH_URL}refresh-token/`);
+  },
 };
 
 export default authService;

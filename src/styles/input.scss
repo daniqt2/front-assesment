@@ -10,6 +10,10 @@
   @apply bg-transparent border rounded-full p-2;
 }
 
+.text-area {
+  @apply bg-transparent;
+}
+
 .input-primary .input,
 .text-area {
   @apply border-white text-white placeholder-gray-200;
@@ -21,7 +25,7 @@
 
 .input-secondary .input,
 .text-area {
-  @apply border-black text-black placeholder-gray-400;
+  @apply border-black text-black placeholder-gray-500;
 }
 
 .input-secondary label {
