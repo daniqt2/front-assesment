@@ -1,9 +1,3 @@
-<script setup lang="ts">
-const props = defineProps<{
-  image?: string;
-}>();
-</script>
-
 <template>
   <div
     class="flex flex-col-reverse justify-start md:flex-row p-4 content-center"

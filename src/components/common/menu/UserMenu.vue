@@ -34,8 +34,8 @@ const handleLogout = () => {
       v-if="menuIsOpen"
       class="bg-tailorBlue absolute bottom-0 left-0 p-8 translate-y-full z-10 rounded-2xl rounded-tr-none grow-left"
     >
-      <p>Panel de control</p>
-      <div class="clickable mt-2 mb-6" @click="goCreate">
+      <p class="text-lg mb-6">Panel de control</p>
+      <div class="clickable mb-6 text-md" @click="goCreate">
         Añadir restaurante
       </div>
       <button class="white-button" @click="handleLogout">Cerrar sesión</button>

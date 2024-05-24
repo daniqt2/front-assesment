@@ -23,8 +23,6 @@ const submitStep = handleSubmit(async (vals: IStepOneFields) => {
   const isValid = await validate();
   isValid && emit("next", vals);
 });
-
-// TODO - SAVE VALUES FOR DEFAULT AND SEND
 </script>
 
 <template>

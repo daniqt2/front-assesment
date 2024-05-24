@@ -18,14 +18,14 @@ const updateValue = (event: Event) => {
 <template>
   <div class="field" :class="variant ?? 'input-primary'">
     <label :for="field" class="mb-2">{{ label }}</label>
-    <textArea
+    <textarea
       :id="field"
       :name="field"
       :placeholder="placeholder ?? ''"
-      class="bg-transparent text-area rounded-smbg-transparent border rounded-md p-2"
+      class="t-textarea bg-transparent text-area rounded-smbg-transparent border rounded-md p-2"
       autocomplete="off"
       @input="updateValue"
-    ></textArea>
+    ></textarea>
     <p v-if="error" class="text-red-100">{{ error }}</p>
   </div>
 </template>

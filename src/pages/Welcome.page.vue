@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import MainLayout from "@/layouts/ColumnEnd.layout.vue";
-import logoImage from "@/assets/Logo.png";
-import svgIcon from "@/assets/Vector.svg";
 import { useRouter } from "vue-router";
 import { ERoutes } from "@/router/router.utils";
 import { nextTick, ref } from "vue";

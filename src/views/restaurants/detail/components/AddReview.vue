@@ -6,17 +6,19 @@ import { ref } from "vue";
 
 const comment = ref();
 const rate = ref(0);
+const loading = ref(false);
 
 const restaurantStore = useRestaurantStore();
 const { selectedRestaurant } = storeToRefs(restaurantStore);
 
 const reset = () => {
+  loading.value = false;
   comment.value = null;
   rate.value = 0;
 };
 
 const handleSend = () => {
-  console.log(comment.value);
+  loading.value = true;
   if (!selectedRestaurant.value?._id) return;
   restaurantStore
     .createComment(selectedRestaurant.value?._id, {
@@ -38,7 +40,12 @@ const handleRate = (idx: number) => {
       class="text-area w-full py-4 text-xl m-2 p-2"
       placeholder="Escribe tu comentario sobre el restaurante"
     ></textarea>
-    <button class="button font-bold text-lg blue-hover" @click="handleSend">
+    <button
+      class="button font-bold text-lg"
+      :class="loading ? 'animate-pulse' : 'blue-hover'"
+      :disabled="loading"
+      @click="handleSend"
+    >
       Enviar
     </button>
   </div>

@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import UserMenu from "@/components/common/menu/UserMenu.vue";
-import { ERoutes } from "@/router/router.utils";
-import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();

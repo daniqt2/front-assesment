@@ -12,10 +12,16 @@ It also uses leaflet for a special map view.
 
 ## LIVE
 
-https://dynamic-dasik-4eaf8a.netlify.app/ 
+https://dynamic-dasik-4eaf8a.netlify.app/
 (CORS IS BLOCKED ON SERVER)
 
 ## HOW TO RUN
+
+### create a .env
+
+- VITE_API_URL = https://main--stellular-fenglisu-e2b691.netlify.app/api
+
+### run with
 
     > yarn
     > yarn dev

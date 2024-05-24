@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import ColumnLayout from "@/layouts/Column.layout.vue";
-import ImageUpload from "./components/ImageUpload.vue";
-import CreateForm from "./components/CreateForm.vue";
 import TailorSmall from "@/components/common/icons/TailorSmall.vue";
 import HeaderLayout from "@/layouts/Header.layout.vue";
-import { useForm } from "vee-validate";
-import { useRestaurantStore } from "@/store/restaurant.store";
 import FormStep from "./components/steps/FormStep.vue";
 import SuccessStep from "./components/steps/SuccessStep.vue";
 import { computed, ref } from "vue";

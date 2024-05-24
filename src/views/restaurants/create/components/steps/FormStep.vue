@@ -4,7 +4,6 @@ import { useRestaurantStore } from "@/store/restaurant.store";
 import { useForm } from "vee-validate";
 import ImageUpload from "../ImageUpload.vue";
 import CreateForm from "../CreateForm.vue";
-import { IRestaurant } from "@/interfaces/Restaurant.interface";
 import { ref } from "vue";
 
 export interface ICreateFields {

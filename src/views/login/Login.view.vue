@@ -6,7 +6,7 @@ import { ERoutes } from "@/router/router.utils";
 import TailorLogo from "@/components/common/icons/TailorLogo.vue";
 import { ILoginParams } from "@/services/auth.service";
 import { useUserStore } from "@/store/user.store";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 
 const router = useRouter();
 const { login } = useUserStore();

@@ -1,7 +1,5 @@
 import { AxiosResponse } from "axios";
-import { IUser } from "@/interfaces/User.interface";
 import httpService from "./api.service";
-import { useUserStore } from "@/store/user.store";
 
 const AUTH_URL = "auth/";
 

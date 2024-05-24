@@ -4,7 +4,6 @@ import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import Carousel from "@/components/common/Carousel.vue";
 import ImageCard from "@/components/common/cards/ImageCard.vue";
-import UserMenu from "@/components/common/menu/UserMenu.vue";
 import { useRestaurantStore } from "@/store/restaurant.store";
 import { storeToRefs } from "pinia";
 import { LatLngExpression } from "leaflet";

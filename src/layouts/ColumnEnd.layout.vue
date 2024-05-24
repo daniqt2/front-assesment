@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { image } = defineProps<{
   image?: string;
 }>();
 </script>
@@ -13,7 +13,7 @@ const props = defineProps<{
       <div class="h-full w-full p-4 flex justify-center items-end">
         <img
           class="w-full h-full object-cover rounded-xl"
-          :src="`/main/${props.image ?? 'Default'}.png`"
+          :src="`/main/${image ?? 'Default'}.png`"
           alt="home im"
         />
       </div>

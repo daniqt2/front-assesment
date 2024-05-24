@@ -12,6 +12,8 @@ interface AuthState {
   token: string | null;
 }
 
+type authFunc = () => string;
+
 export const useUserStore = defineStore("user", {
   state: (): AuthState => ({
     user: null,
@@ -25,8 +27,7 @@ export const useUserStore = defineStore("user", {
       try {
         const response: AxiosResponse<IUser> = await authService.login(params);
         if (response) {
-          // fix type error
-          const token = response?.headers?.getAuthorization();
+          const token = (response?.headers?.getAuthorization as authFunc)();
           localStorage.setItem("TOKEN-TL", token);
           this.user = response.data;
           return this.user;

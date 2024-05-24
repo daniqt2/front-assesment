@@ -2,7 +2,6 @@
 import Input from "@/components/common/form/TInput.vue";
 import TextArea from "@/components/common/form/TTextArea.vue";
 import { useField } from "vee-validate";
-import { ref } from "vue";
 import { ICreateFields } from "./steps/FormStep.vue";
 
 const { disabled } = defineProps<{
@@ -12,12 +11,6 @@ const { disabled } = defineProps<{
 const emit = defineEmits<{
   (e: "save", formData: Partial<ICreateFields>): void;
 }>();
-
-const saving = ref(false);
-
-const handleSave = () => {
-  emit("save", { name, description, address });
-};
 
 const { value: name } = useField("name", "required");
 const { value: description } = useField("description", "required");
@@ -54,7 +47,7 @@ const { value: address } = useField("address", "required");
       class="button flex text-black disabled:"
       :class="!disabled ? 'blue-hover' : ' disabled animate-pulse'"
       type="submit"
-      :disabled="true"
+      :disabled="disabled"
     >
       <span @click="emit('save', { name, description, address })">Guardar</span>
     </button>

@@ -18,11 +18,8 @@ const { handleSubmit, validate } = useForm();
 
 const required = (value: string) => value?.length > 0; // TODO -> VALIDATION file
 
-const { value: email, errorMessage: emailError } = useField("email", required);
-const { value: password, errorMessage: passwrodError } = useField(
-  "password",
-  required
-);
+const { value: email } = useField("email", required);
+const { value: password } = useField("password", required);
 
 const submitData = handleSubmit(async (params: IParams) => {
   const isValid = await validate();
@@ -48,7 +45,7 @@ const submitData = handleSubmit(async (params: IParams) => {
     />
     <button class="white-button flex" type="submit">
       <div class="animate-spin mr-2" v-if="loading">--</div>
-      <span v-else>Entrar</span>
+      <span v-else :disabled="!email || !password">Entrar</span>
     </button>
   </form>
 </template>
