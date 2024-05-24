@@ -14,6 +14,6 @@ pinia.use(piniaPersist);
 
 const app = createApp(App);
 app.use(router);
-app.use(createPinia());
+app.use(pinia);
 app.provide("emitter", emitter);
 app.mount("#app");
